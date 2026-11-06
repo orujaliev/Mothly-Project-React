@@ -1,17 +1,18 @@
-import { useState } from 'react'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./layout/Layout";
+import Home from "./pages/Home/Home";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "product/:id", element: <ProductDetail /> },
+    ],
+  },
+]);
 
-function App() {
-const [count, setCount] =useState(0)
-  return (
-    <>
-     
-     <h1>salam</h1>
-     <button onClick={() => setCount(count + 1)}
-      
-      >artir</button>  
-    </>
-  )
+export default function App() {
+  return <RouterProvider router={router} />;
 }
-
-export default App
